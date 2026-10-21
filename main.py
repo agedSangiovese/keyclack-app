@@ -11,6 +11,7 @@ import math
 import wave
 import struct
 import os
+import sys
 import tempfile
 import shutil
 import time
@@ -97,8 +98,12 @@ def write_wav(path, samples):
 
 
 # ---------------------------------------------------------------- sample loading
+def resource_path(relative):
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, relative)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SAMPLES_DIR = os.path.join(BASE_DIR, "samples")
+SAMPLES_DIR = resource_path("samples")
 
 AUDIO_EXTS = {".wav", ".flac", ".ogg", ".aiff", ".aif"}
 if not HAS_SOUNDFILE:
